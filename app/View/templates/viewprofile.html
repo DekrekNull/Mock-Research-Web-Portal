@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+    <h3> {{user.name}}'s Profile</h3>  
+
+    <b>Name: </b> <p>{{user.name}} {{user.lastname}}</p>
+    <b>WSU Email: </b> <p> {{user.username}} </p>
+    <b>Secondary Email: </b> <p> {{user.email}} </p>
+    <b>WSU ID: </b> <p>{{user.wsu_id}}</p>
+    <b>phone: </b> <p>{{user.phone}}</p>
+    
+    {% if not prof%}
+    <b>Gpa: </b> <p>{{user.gpa}}</p>
+    <b>Major: </b> <p>{{user.major}}</p>
+    <b>Graduation Year: </b> <p>{{user.graduation_year}}</p>
+    <b>Taken Courses: </b> <p>{{user.taken_courses}}</p>
+    <b>Prior Experience: </b> <p>{{user.prior_experience}}</p>
+    <b>Programming Languages: </b>
+    <ul>
+    {% for i in user.languages %}
+    <li>{{i.name}}</li>
+    {% endfor %}
+    </ul>
+
+    <b>Research Fields: </b>
+    <ul>
+    {% for x in user.research_fields %}
+    <li>{{x.name}}</li>
+    {% endfor %}
+    </ul>
+
+   
+    {% endif %}
+
+    {% if user.id == current_user.id %}
+    <a href="{{url_for('auth.editprofile', user_id = current_user.id)}}"> Edit Profile </a>
+    {% endif %}
+
+{% endblock %}

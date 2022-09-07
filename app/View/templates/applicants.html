@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 class="mt-2">{{post.title}}</h2>
+    <h3>View Applicants</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Applicant</th>
+                <th>Contact Info</th>
+                <th>Reference</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if post.applications %}
+                {% for app in post.applications %}
+                    <tr>
+                        <td>
+                            <div>{{app.applicant.name}} {{app.applicant.last_name}}</div>
+                        </td>
+                        <td>
+                            <div>{{ app.applicant.username }}</div>
+                            <div class="text-secondary">{{app.applicant.email}}</div>
+                            <small>GPA: {{app.applicant.gpa}}</small>
+                        </td>
+                        <td>
+                            <div>{{app.reference_name}}</div>
+                            <div class="text-secondary">{{app.reference_email}}</div>
+                        </td>
+                        <td>
+                            <div>{{app.status}}</div>
+                        </td>
+                        <td>
+                            <a class="submit" href="{{url_for('routes.view_applicant', applicant_id = app.applicant.id, application_id = app.id)}}">View Applicant</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4">No applications</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

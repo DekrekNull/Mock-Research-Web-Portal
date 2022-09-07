@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+    <div>
+        <h2>Student Registration</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="row">
+                <div class="col-6">
+                    {{ render_field(form.username, class="form-control") }}
+                    {{ render_field(form.email, class="form-control") }}
+                    {{ render_field(form.name, class="form-control") }}
+                    {{ render_field(form.last_name, class="form-control") }}
+                    {{ render_field(form.wsu_id, class="form-control") }}
+                    {{ render_field(form.phone, class="form-control") }}
+                    {{ render_field(form.major, class="form-control") }}
+                    {{ render_field(form.gpa, class="form-control") }}
+                    {{ render_field(form.graduation_year, class="form-control") }}
+                    {{ render_field(form.taken_courses, class="form-control") }}
+                    {{ render_field(form.prior_experience, class="form-control") }}
+                    {{ render_field(form.research_fields) }}
+                    {{ render_field(form.languages) }}
+                    {{ render_field(form.password, class="form-control") }}
+                    {{ render_field(form.password2, class="form-control") }}
+                </div>
+            </div>
+            {{ form.submit(class="btn btn-primary") }}
+
+            <p>Not a Student? <a href="{{url_for('auth.registerfaculty')}}">Click to Register as Faculty!</a></p>
+        </form>
+    </div>
+{% endblock %}

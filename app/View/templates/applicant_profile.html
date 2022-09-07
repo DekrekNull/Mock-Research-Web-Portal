@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="mt-2">
+        <a class="submit" href="{{url_for('routes.post_applicants', post_id = application.post_id)}}">Back</a>       
+        <h2> {{applicant.name}} {{applicant.last_name}}'s Application </h2>
+        <b>WSU ID: </b> <p>{{applicant.wsu_id}}</p>
+        <b>WSU Email: </b> <p>{{applicant.username}}</p>
+        <b>Phone Number</b> <p>{{applicant.phone}}</p>
+        <b>Personal Statement</b> <p>{{application.statement}}</p>
+        <b>Major: </b> <p>{{applicant.major}}</p>
+        <b>GPA: </b> <p>{{applicant.gpa}}</p>
+        <b>Expected Graduation Year: </b> <p>{{applicant.graduation_year}}</p>
+        <b>Taken Courses: </b> <p>{{applicant.taken_courses}}</p>
+        <b>Prior Experience: </b> <p>{{applicant.prior_experience}}</p>
+        <b>Programming Languages: </b>
+        <p>{% for l in applicant.languages %}
+            {{l.name}}
+        {% endfor %}
+        </p>
+        {% if application.status != "rejected" and  application.status != "hired"%}
+        {% if application.status == "approved" %}
+        <a class="submit" href="{{url_for('routes.update_status', application_id = application.id, applicant_id = applicant.id, new_status = 'hired')}}">Hire Applicant</a>
+        {% else %}
+        <a class="submit" href="{{url_for('routes.update_status', application_id = application.id, applicant_id = applicant.id, new_status = 'approved')}}">Approve Applicant for Interview</a>
+        {% endif %}
+        <a class="submit" href="{{url_for('routes.update_status', application_id = application.id, applicant_id = applicant.id, new_status = 'rejected')}}">Reject Applicant</a>
+        {% endif %}
+     
+    </div>
+{% endblock %}

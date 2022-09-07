@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+    <h3>View Your Applications</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Research</th>
+                <th>Applicant</th>
+                <th>Status</th>
+                <th>Withdraw Application</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if app %}
+                {% for a in app %}
+                    <tr>
+                        <td>
+                            {%if post.query.filter_by(id = a.post_id).first().title%}
+                            <div>{{ post.query.filter_by(id = a.post_id).first().title }} </div>
+                            {% else %}
+                            <div> Removed </div>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            <div>{{a.reference_name}}</div>
+                            <div class="text-secondary">{{app.reference_email}}</div>
+                        </td>
+                        <td>
+                            <div>{{a.status}}</div>
+                        </td>
+                        <td>
+                            {%if a.status == 'Pending' %}
+                                <div><a class="submit" href="{{url_for('routes.update_status', application_id = a.id, applicant_id = a.user_id, new_status = 'Withdrawn')}}">Withdraw Application</a></div>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4">No applications</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

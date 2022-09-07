@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+<div class="mt-2">
+    <h2>{{ title }}</h2>
+    <div class="card mb-2">
+        <div class="card-body">
+            <h3 class="card-title" id="sort-title">
+                Sort and Filter &downarrow;
+            </h3>
+
+            <form action="" method="POST" id="sort-form" style="display: none">
+                {{sort_form.hidden_tag()}}
+                <div class="row">
+                    <div class="col-md-6">
+                        {{render_field(sort_form.sort_by, class="form-select")}}
+                        {{render_field(sort_form.start_date, class="form-control", type="date")}}
+                        {{render_field(sort_form.end_date, class="form-control", type="date")}}
+                    </div>
+                    <div class="col-md-6">
+                        {{render_field(sort_form.research_field, class="form-check")}}
+                    </div>
+                </div>
+                {{sort_form.submit(class="btn btn-primary")}}
+            </form>
+        </div>
+    </div>
+    <table class = "table table-responsive" style = "width:100%" valign="top">
+        <thead>
+            <tr>
+                <th style="width:51%"><h3>Research Title</h3></th>
+                <th style="width:25%"><h3>Research Fields</h3></th>
+                <th style="width:12%"><h3>Start Date</h3></th>
+                <th style="width:12%"><h3>End Date</h3></th>
+            </tr>
+        </thead>
+        {% if not is_professor %}
+        <tbody>
+            <tr><th>Recommendations</th><th> </th><th> </th><th> </th></tr>
+            {% if not recommendations %}
+            <tr><td>No Recommendations Available</td><td> </td><td> </td><td> </td></tr>
+            {% endif %}
+            {% for post in recommendations %}
+                {% include 'post_list.html' %}
+            {% endfor %}
+        </tbody>
+        {% endif %}
+        <tbody>
+            <tr><th>All Posts</th><th> </th><th> </th><th> </th></tr>
+            {% for post in posts %}
+                {% include 'post_list.html' %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    const title = document.querySelector('#sort-title');
+    const form = document.querySelector('#sort-form');
+
+    title.addEventListener('click', function() {
+        if (form.style.display == 'none') {
+            form.style.display = 'block';
+        }
+        else {
+            form.style.display = 'none';
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+
+    <h2>Create New Research Post</h2>
+
+    {% if form %}
+
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <div>
+                {{ render_field(form.title, class="form-control") }}
+                {{ render_field(form.description, class="form-control") }}
+                {{ render_field(form.start_date, class="form-control") }}
+                {{ render_field(form.end_date, class="form-control") }}
+                {{ render_field(form.time_commitment, class="form-control") }}
+                {{ render_field(form.requirements, class="form-control") }}
+                {{ form.research_field.label }}
+                {{ form.research_field }}
+            </div>
+                {{ form.submit(class="btn btn-primary") }}
+        </form>
+    {% endif %}
+
+
+  {% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+    <div>
+        <h2>Edit Faculty Profile</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="row">
+                <div class="col-6">
+                    {{ render_field(form.username, class="form-control") }}
+                    {{ render_field(form.email, class="form-control") }}
+                    {{ render_field(form.name, class="form-control") }}
+                    {{ render_field(form.last_name, class="form-control") }}
+                    {{ render_field(form.wsu_id, class="form-control") }}
+                    {{ render_field(form.phone, class="form-control") }}
+                    {{ render_field(form.password, class="form-control") }}
+                    {{ render_field(form.password2, class="form-control") }}
+                </div>
+            </div>
+            {{ form.submit(class="btn btn-primary") }}
+
+            
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+    <div>
+        <h2>Registration</h2>
+        
+        <p> Are you a Student? <a href="{{url_for('auth.registerstudent')}}" >Click to Register as a Student!</a> </p>
+        <p> Are you a Professor? <a href="{{url_for('auth.registerfaculty')}}">Click to Register as a Professor!</a> </p>
+            
+        
+    </div>
+{% endblock %}

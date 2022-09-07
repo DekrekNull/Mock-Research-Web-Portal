@@ -1,0 +1,18 @@
+<tr> 
+    <td>
+        <a href="{{url_for('routes.post_details', post_id = post.id)}}">{{post.title}}</a>
+    </td>
+    <td>
+        <div>
+            {% if post.get_fields() %}
+                {% for field in post.get_fields().all() %}
+                    <span class="badge bg-primary"> 
+                        {{field.name}}
+                    </span>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </td>
+    <td><div>{{ post.get_start() }}</div></td>
+    <td><div>{{ post.get_end() }}</div></td>
+</tr>

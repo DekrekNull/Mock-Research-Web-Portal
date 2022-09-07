@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+<table>
+    <td><h2>Edit Research Post</h2></td>
+    <td style="text-align: right; width:20%;"><a class="submit" href="{{url_for('routes.delete_posts', post_id = id) }}">Delete Post</a></td>
+</table>
+
+    {% if form %}
+
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <div>
+                {{ render_field(form.title, class="form-control") }}
+                {{ render_field(form.description, class="form-control") }}
+                {{ render_field(form.start_date, class="form-control") }}
+                {{ render_field(form.end_date, class="form-control") }}
+                {{ render_field(form.time_commitment, class="form-control") }}
+                {{ render_field(form.requirements, class="form-control") }}
+                {{ form.research_field.label }}
+                {{ form.research_field }}
+            </div>
+                {{ form.submit(class="btn btn-primary") }}
+                <input type="button" value="Cancel" onclick="history.back()">
+        </form>
+    {% endif %}
+
+
+  {% endblock %}

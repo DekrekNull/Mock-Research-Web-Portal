@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="hero-container p-5">
+        <div><h1 class="blacked">Welcome</h1></div>
+        <div><h3 class="blacked">Apply for research positions TODAY!</h3></div>
+        <p class="shadowed" style="max-width: 900px">
+            Getting involved in research is a great way to make a difference in the world. It can be the foundation for your career or graduate school. Apply today to be considered for a research position!
+        </p>
+        <a class="btn btn-outline-white btn-lg" href="{{url_for('routes.open_posts')}}">View openings</a>
+    </div>
+    <div class="row">
+        <div class="col-8 py-3">
+            Washington State University researchers untangle complex problems to enrich quality of life for us all. Their work safeguards the health of humans and animals. It helps ensure the security and abundance of our food supply. It cultivates sustainable sources of energy to power future generations. Discoveries and innovations of this Tier 1 research institution fuel prosperity across the Pacific Northwest.
+        </div>
+        <div class="col-4 py-4 text-center">
+            <a class="btn btn-outline-primary btn-lg" href="{{url_for('auth.register')}}">Create an account</a>
+        </div>
+    </div>
+{% endblock %}
+

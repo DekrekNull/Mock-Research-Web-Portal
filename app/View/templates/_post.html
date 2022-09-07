@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="mt-2">
+        <input type="button" class="btn btn-primary" value="Back" onclick="history.back()">
+
+        <h2> {{post.title}} </h2>
+
+        <div class="post_content"> {{post.description}} </div><br>
+        <div class="post_content"> 
+            <h3>Position Requirements</h3>
+            {{ post.requirements }} 
+        </div>
+        <div class="post_content"> Time commitment: {{ post.time_commitment }} </div>
+        <div class="post_content"> 
+            Position begins: {{ post.get_start() }} <br>
+            Position ends: {{ post.get_end() }}
+        </div><br>
+        <div class="post_content">
+            <h3>Related Research fields </h3>
+            {% if post.get_fields() %}
+                {% for field in post.get_fields().all() %}
+                    <span class="badge bg-primary">{{ field.name }}</span>
+                {% endfor %}
+            {% endif %} <br>
+        </div>
+        {% if not current_user.is_anonymous %}
+            {% if current_user.id == post.user_id %}
+            <a class="submit" href="{{url_for('routes.edit_post', post_id = post.id)}}">Edit Post</a>
+            <a class="submit" href="{{url_for('routes.post_applicants', post_id = post.id)}}">View Applicants</a>
+            {% elif not current_user.is_professor()%}
+            <a class="submit" href="{{url_for('routes.new_application', post_id = post.id)}}">Apply</a>
+            {% endif %}
+        {% endif %} 
+    </div>
+{% endblock %}

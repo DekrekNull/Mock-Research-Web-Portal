@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+
+    <h2>Apply to Position for {{ post.title }}</h2>
+
+    {% if form %}
+
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <div>
+                {{ render_field(form.statement, class="form-control", placeholder="Provide a brief statement describing why you are interested in this research topic and what you hope to gain by participating in this project.") }}
+            </div>
+            <h3>Reference Info</h3>
+            <div>
+                {{ render_field(form.reference_name, class="form-control") }}
+                {{ render_field(form.reference_email, class="form-control") }}
+            </div>
+            </div>
+                {{ form.submit(class="btn btn-primary") }}
+                <input type="button" value="Cancel" onclick="history.back()">
+        </form>
+    {% endif %}
+
+
+  {% endblock %}
