@@ -12,5 +12,5 @@ Term Project Repository for team TeamMED
 2. Install the dependencies with `pip install -r requirements.txt`
 3. Run the application with `flask run`
 ## Colaborators
-- Michael Maddux
-- Kevin Evins
+- Michael Maddux (classmate)
+- Kevin Evins (classmate)
