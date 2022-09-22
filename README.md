@@ -1,7 +1,5 @@
 # Mock-Research-Web-Portal
-A mock web portal created as a final project for CptS 322 at WSU.
-
-Term Project Repository for team TeamMED
+A mock web portal created as a group final project for a class at WSU: CptS 322 Software Engineering Principles I.
 
 ## Getting started
 
