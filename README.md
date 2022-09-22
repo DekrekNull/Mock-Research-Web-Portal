@@ -11,6 +11,6 @@ Term Project Repository for team TeamMED
    * You can activate the virtual env with `. venv/bin/activate` on Linux or `venv/scripts/activate.bat` on Windows
 2. Install the dependencies with `pip install -r requirements.txt`
 3. Run the application with `flask run`
-## Colaborators
+## Collaborators
 - Michael Maddux (classmate)
 - Kevin Evins (classmate)
